@@ -1,0 +1,1 @@
+{"version":3,"sourceRoot":"","sources":["file:///Users/supriyaayare/Documents/Git-code/si-nuxt-tailwind-demo/assets/scss/index.scss"],"names":[],"mappings":"AAEE,iBACE,qBAEF,eACE","sourcesContent":["\n.article {\n  &-content {\n    background-color: red;\n  }\n  &-title {\n    color: #000;\n  }\n}\n"]}
