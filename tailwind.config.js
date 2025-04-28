@@ -1,20 +1,17 @@
 module.exports = {
   content: [
-    "./components/**/*.{js,vue,ts}",
-    "./layouts/**/*.vue",
-    "./pages/**/*.vue",
-    "./plugins/**/*.{js,ts}",
-    "./nuxt.config.{js,ts}",
+    "./widgets/**/*.{js,vue,ts}", // your original
+    "./components/**/*.{js,vue,ts}", // add this if needed
+    "./layouts/**/*.{js,vue,ts}",
+    "./pages/**/*.{js,vue,ts}", // especially important in Nuxt
     "./app.vue",
-    "./widgets/**/*.{js,vue,ts}"
+
   ],
   theme: {
     extend: {},
   },
-  plugins: [],
-  // Ensure Tailwind CSS 3 features work properly
-  future: {
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true,
-  },
+  plugins: [
+    
+  ],
+
 } 

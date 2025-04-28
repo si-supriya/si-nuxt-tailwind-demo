@@ -1,19 +1,35 @@
 <template>
-  <div class="">
-    <NuxtLink to="/" class="btn-primary "> Home </NuxtLink>
-    <NuxtLink to="/about" class="btn-primary  ">
-      About Page
-    </NuxtLink>
-
-    <NuxtLink to="/contact" class="btn-primary">
-      Contact Us
-    </NuxtLink>
-    <Nuxt />
+  <div class="min-h-screen bg-gray-100">
+    <nav class="bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex">
+            <div class="flex-shrink-0 flex items-center">
+              <h1 class="text-xl font-bold text-gray-800">Nuxt 2 + Tailwind Demo</h1>
+            </div>
+            <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+              <NuxtLink to="/" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                Home
+              </NuxtLink>
+              <NuxtLink to="/ListingPage" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                Listing
+              </NuxtLink>
+              <NuxtLink to="/contact" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                Contact
+              </NuxtLink>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+      <Nuxt />
+    </main>
   </div>
 </template>
 
 <script>
 export default {
-  name: "DefaultLayout",
-};
+  name: 'DefaultLayout'
+}
 </script> 

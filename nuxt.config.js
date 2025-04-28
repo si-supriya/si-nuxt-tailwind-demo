@@ -4,25 +4,26 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'my-nuxt-tailwind',
+    title: 'si-nuxt-tailwind-demo',
     htmlAttrs: {
       lang: 'en'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { hid: 'description', name: 'description', content: '' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-
+  alias: {
+    '@widgets': '/absolute/path/to/widgets',
+  },
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    '@/assets/css/main.css',
-    '@/assets/scss/main.scss'
+    '~/assets/css/tailwind.css',
+    '~/assets/scss/main.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -41,17 +42,43 @@ export default {
   modules: [
   ],
 
+  // Programmatically generate routes for all pages in the `pages/` directory
+  router: {
+    extendRoutes(routes, resolve) {
+      const glob = require('glob');
+      // Find all .vue page files
+      const files = glob.sync('pages/**/*.vue', { cwd: __dirname });
+      // Clear default Nuxt routes
+      routes.splice(0);
+      files.forEach((file) => {
+        const base = file.replace(/\\/g, '/').replace('pages/', '').replace('.vue', '');
+        const path = base === 'index' ? '/' : `/${base}`;
+        routes.push({ name: base, path, component: resolve(__dirname, file) });
+      });
+    }
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    transpile: [
-      'tailwind-variants',
-      'tailwind-merge'
-    ],
+    loaders: {
+      scss: { implementation: require('sass') },
+      sass: { implementation: require('sass') }
+    },
     postcss: {
       plugins: {
         tailwindcss: {},
         autoprefixer: {},
       },
+    },
+    transpile: [
+      'tailwind-variants',
+      'tailwind-merge'
+    ],
+    babel: {
+      plugins: [
+        '@babel/plugin-proposal-optional-chaining',
+        '@babel/plugin-proposal-nullish-coalescing-operator'
+      ]
     },
     extend(config, { isDev, isClient }) {
       // Add babel-loader for tailwind-variants
@@ -74,43 +101,9 @@ export default {
   
   // Tailwind CSS configuration
   tailwindcss: {
-    cssPath: '~/assets/css/main.css',
+    cssPath: '~/assets/css/tailwind.css',
     configPath: 'tailwind.config.js',
-    exposeConfig: true,
-    config: {
-      content: [
-        "./components/**/*.{js,vue,ts}",
-        "./layouts/**/*.vue",
-        "./pages/**/*.vue",
-        "./plugins/**/*.{js,ts}",
-        "./nuxt.config.{js,ts}",
-        "./app.vue",
-        "./widgets/**/*.{js,vue,ts}"
-      ]
-    }
-  },
-  
-  // Watchers configuration
-  watchers: {
-    webpack: {
-      ignored: /node_modules/,
-      aggregateTimeout: 300,
-      poll: 1000
-    },
-    chokidar: {
-      ignoreInitial: true,
-      ignored: /node_modules/
-    }
-  },
-  
-  // Router configuration
-  router: {
-    extendRoutes(routes, resolve) {
-      routes.push({
-        name: 'home',
-        path: '/',
-        component: resolve(__dirname, 'pages/homePage.vue')
-      })
-    }
+    exposeConfig: false,
+    config: {}
   }
 } 
