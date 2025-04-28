@@ -1,11 +1,11 @@
 module.exports = {
   content: [
-    "./widgets/**/*.{js,vue,ts}", // your original
-    "./components/**/*.{js,vue,ts}", // add this if needed
-    "./layouts/**/*.{js,vue,ts}",
-    "./pages/**/*.{js,vue,ts}", // especially important in Nuxt
-    "./app.vue",
-
+    './pages/**/*.{vue,js}',
+    './components/**/*.{vue,js}',
+    './layouts/**/*.{vue,js}',
+    './plugins/**/*.{js}',
+    './widgets/**/*.{vue,js}',
+    './node_modules/tailwind-variants/**/*.{js}',  // Add this line to include tailwind-variants files
   ],
   theme: {
     extend: {},

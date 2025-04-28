@@ -1,15 +1,16 @@
+// Variant file for Showcase01V1
 import { tv } from 'tailwind-variants';
 
 const Showcase01V1 = tv({
   slots: {
-    base: 'bg-white p-4 rounded-lg shadow',
+    base: 'bg-white px-8 rounded-lg text-left',
     title: 'text-lg font-bold text-gray-800',
     content: 'text-gray-600 mt-2',
   },
   variants: {
     color: {
-      primary: {
-        base: 'bg-blue-500 text-white',
+      primary: {  
+        base: 'text-blue-200',
       },
       secondary: {
         base: 'bg-gray-200 text-black',
@@ -20,7 +21,7 @@ const Showcase01V1 = tv({
         base: 'p-2',
       },
       md: {
-        base: 'p-4',
+        base: 'p-8',
       },
       lg: {
         base: 'p-6',
